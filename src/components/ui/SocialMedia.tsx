@@ -1,3 +1,4 @@
+import { FaXTwitter } from 'react-icons/fa6'
 import { FiGithub, FiInstagram, FiLinkedin } from 'react-icons/fi'
 
 const SocialMedia = () => {
@@ -11,6 +12,9 @@ const SocialMedia = () => {
             </li>
             <li>
                 <FiInstagram />
+            </li>
+            <li>
+                <FaXTwitter />
             </li>
             <li className="h-30 w-0.5 bg-gray-400"></li>
         </ul>

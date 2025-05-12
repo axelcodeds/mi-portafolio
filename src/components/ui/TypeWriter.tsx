@@ -5,42 +5,55 @@ import { useEffect, useState } from 'react'
 
 interface TypeWriterProps {
     text: string
-    speed?: number // Velocidad por letra (ms)
-    delay?: number // Tiempo antes de reiniciar (ms)
+    speed?: number
+    delay?: number
+    startFrom?: number
 }
 
 const TypeWriter = ({
     text,
-    speed = 50,
-    delay = 10000, // 10 segundos
+    speed = 100,
+    delay = 5000,
+    startFrom = 1,
 }: TypeWriterProps) => {
-    const [displayedText, setDisplayedText] = useState('')
+    const [displayedText, setDisplayedText] = useState(text.slice(0, startFrom))
     const controls = useAnimation()
 
-    // Efecto para escribir/borrar el texto
+    // Efecto de escritura
     useEffect(() => {
         let timeout: NodeJS.Timeout
+        let isMounted = true
 
-        const typeText = () => {
-            if (displayedText.length < text.length) {
-                // Escribe una letra adicional
+        const animate = async () => {
+            // Animación de escritura
+            while (isMounted && displayedText.length < text.length) {
+                await new Promise((resolve) => {
+                    timeout = setTimeout(() => {
+                        if (isMounted) {
+                            setDisplayedText((prev) => prev + text[prev.length])
+                        }
+                        resolve(null)
+                    }, speed)
+                })
+            }
+
+            // Espera antes de reiniciar
+            if (isMounted) {
                 timeout = setTimeout(() => {
-                    setDisplayedText(text.slice(0, displayedText.length + 1))
-                }, speed)
-            } else {
-                // Espera `delay` ms y reinicia
-                timeout = setTimeout(() => {
-                    setDisplayedText('')
+                    setDisplayedText(text.slice(0, startFrom))
                 }, delay)
             }
         }
 
-        typeText()
+        animate()
 
-        return () => clearTimeout(timeout)
-    }, [displayedText, text, speed, delay])
+        return () => {
+            isMounted = false
+            clearTimeout(timeout)
+        }
+    }, [displayedText, text, speed, delay, startFrom])
 
-    // Efecto para el cursor (parpadeo infinito)
+    // Efecto de cursor (siempre activo)
     useEffect(() => {
         controls.start({
             opacity: [0, 1, 0],
@@ -51,12 +64,10 @@ const TypeWriter = ({
     return (
         <div className="inline-flex items-center">
             <span className="whitespace-nowrap font-mono">{displayedText}</span>
-            {displayedText.length < text.length && (
-                <motion.span
-                    animate={controls}
-                    className="ml-1 h-6 w-1 bg-black"
-                />
-            )}
+            <motion.span
+                animate={controls}
+                className="ml-1 h-10 w-1 bg-gray-300 inline-block"
+            />
         </div>
     )
 }
