@@ -1,3 +1,4 @@
+import About from '@/components/layout/About'
 import Banner from '@/components/layout/Banner'
 import Header from '@/components/layout/Header'
 import SocialMedia from '@/components/ui/SocialMedia'
@@ -9,8 +10,9 @@ export default function Home() {
             <div className="fixed bottom-0 left-0 pl-10">
                 <SocialMedia />
             </div>
-            <div className="px-40 xl:px-60 py-10">
+            <div className="px-40 xl:px-60 py-10 flex flex-col gap-50">
                 <Banner />
+                <About />
             </div>
             <div className="fixed bottom-0 right-0 pr-10">
                 <ul className="text-xl *:text-gray-400 *:hover:text-gray-600 flex flex-col gap-6 items-center w-min">
