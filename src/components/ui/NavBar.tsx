@@ -8,7 +8,7 @@ const NavBar = () => {
                     <span>01.</span> Sobre mí
                 </li>
                 <li className={linkStyle}>
-                    <span>02.</span> Experiencia
+                    <span>02.</span> Habilidades
                 </li>
                 <li className={linkStyle}>
                     <span>03.</span> Proyectos

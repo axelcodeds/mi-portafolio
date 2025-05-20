@@ -1,4 +1,7 @@
+'use client'
+
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 const About = () => {
     return (
@@ -47,14 +50,38 @@ const About = () => {
                 </div>
                 <div className="">
                     <div className="relative h-min group shadow-2xl">
-                        <div className="absolute h-[265px] inset-0 translate-x-2 translate-y-2 border-2 border-green-500 rounded-lg transition-colors duration-300 group-hover:bg-green-500"></div>
-                        <Image
-                            src="/avatar.jpg"
-                            alt="Descripción de la imagen"
-                            width={1300}
-                            height={1300}
-                            className="relative rounded-lg shadow-2xl transition-transform duration-300 group-hover:brightness-90 group-hover:filter group-hover:sepia group-hover:hue-rotate-30"
-                        />
+                        <motion.div
+                            className=" h-min group shadow-2xl"
+                            animate={{
+                                y: [0, 10, 0], // Movimiento: arriba, abajo, centro
+                            }}
+                            transition={{
+                                duration: 3, // Duración de cada ciclo
+                                repeat: Infinity, // Repetir infinitamente
+                                ease: 'easeInOut', // Suavizar el movimiento
+                                delay: 0.5, // Retraso antes de comenzar el movimiento
+                            }}
+                        >
+                            <div className="absolute h-[265px] inset-0 translate-x-2 translate-y-2 border-2 border-green-500 rounded-lg transition-colors duration-300 group-hover:bg-green-500"></div>
+                        </motion.div>
+                        <motion.div
+                            animate={{
+                                y: [0, 10, 0], // Movimiento: arriba, abajo, centro
+                            }}
+                            transition={{
+                                duration: 3, // Duración de cada ciclo
+                                repeat: Infinity, // Repetir infinitamente
+                                ease: 'easeInOut', // Suavizar el movimiento
+                            }}
+                        >
+                            <Image
+                                src="/avatar.jpg"
+                                alt="Descripción de la imagen"
+                                width={1300}
+                                height={1300}
+                                className="relative rounded-lg shadow-2xl transition-transform duration-300 group-hover:brightness-90 group-hover:filter group-hover:sepia group-hover:hue-rotate-30"
+                            />
+                        </motion.div>
                     </div>
                     <div className="mt-10"></div>
                     <p className="text-2xl font-mono text-gray-500">
