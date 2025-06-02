@@ -5,10 +5,14 @@ import { RiNextjsFill } from 'react-icons/ri'
 import { SiSpringboot } from 'react-icons/si'
 import SkillCard from '../ui/SkillCard'
 
-const Skills = () => {
+const Skills = ({
+    skillsRef,
+}: {
+    skillsRef: React.RefObject<HTMLDivElement | null>
+}) => {
     return (
-        <div>
-            <div className="flex items-center mb-10">
+        <div ref={skillsRef}>
+            <div className="flex items-center mt-30">
                 <h2 className="mr-10 text-4xl font-bold text-gray-300">
                     <span className="text-green-500">02.</span> Habilidades
                 </h2>

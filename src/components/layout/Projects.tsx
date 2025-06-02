@@ -1,9 +1,16 @@
 import React from 'react'
 import ProjectCard from '../ui/ProjectCard'
 
-const Projects = () => {
+const Projects = (
+    props: React.PropsWithChildren<{
+        projectsRef: React.RefObject<HTMLDivElement | null>
+    }>
+) => {
     return (
-        <section className="min-h-screen flex flex-col justify-center items-start gap-8 px-8 py-16">
+        <section
+            ref={props.projectsRef}
+            className="min-h-screen flex flex-col justify-center items-start gap-8 px-8 py-16 pt-30"
+        >
             <div className="flex items-center mb-10">
                 <h2 className="mr-10 text-4xl font-bold text-gray-300">
                     <span className="text-green-500">03.</span> Proyectos

@@ -3,10 +3,14 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-const About = () => {
+const About = ({
+    aboutRef,
+}: {
+    aboutRef: React.RefObject<HTMLDivElement | null>
+}) => {
     return (
-        <div>
-            <div className="flex items-center mb-10">
+        <div ref={aboutRef}>
+            <div className="flex items-center mb-10 mt-30">
                 <h2 className="mr-10 text-4xl font-bold text-gray-300">
                     <span className="text-green-500">01.</span> Sobre mí
                 </h2>

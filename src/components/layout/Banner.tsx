@@ -2,7 +2,7 @@ import TypeWriter from '../ui/TypeWriter'
 
 const Banner = () => {
     return (
-        <div className="">
+        <div className="mt-20">
             <div className="flex flex-col gap-4">
                 <p className="text-lg text-green-500">Hola, mi nombre es</p>
                 <h1 className="text-7xl font-bold text-gray-100">
